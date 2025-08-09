@@ -7,14 +7,13 @@ import {
   showError,
 } from './js/render-functions.js';
 
-let queryString = '';
-
 const form = document.querySelector('.form');
 const searchButton = document.querySelector('.search-button');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
   clearGallery();
+  const queryString = e.target.elements['search-text'].value.trim();
 
   if (queryString) {
     showLoader();
@@ -39,16 +38,5 @@ form.addEventListener('submit', e => {
         searchButton.disabled = false;
         searchButton.classList.remove('disabled');
       });
-  }
-});
-
-form.addEventListener('input', e => {
-  queryString = e.target.value.trim();
-  if (queryString) {
-    searchButton.classList.remove('disabled');
-    searchButton.disabled = false;
-  } else {
-    searchButton.classList.add('disabled');
-    searchButton.disabled = true;
   }
 });
